@@ -1,4 +1,5 @@
 import json
+
 from config import PATH_OPERATIONS
 
 
@@ -25,3 +26,10 @@ def completed_operations():
     return list_completed_operations
 
 
+def last_five_operations():
+    """
+    Возвращает список словарей пяти последних выполненых операций
+    """
+    operations = completed_operations()
+    five_operations = operations[-5::]
+    return five_operations
