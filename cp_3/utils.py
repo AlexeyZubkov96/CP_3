@@ -50,8 +50,9 @@ def hiding_card(card):
     """
     split_str_score = card.split(" ")
     card_number = "".join(split_str_score[-1])
+    name_card = " ".join(split_str_score[:-1])
     private_number = card_number[:6] + (len(card_number[6:-4]) * '*') + card_number[-4:]
-    return f"{private_number[:4]} {private_number[4:8]} {private_number[8:12]} {private_number[12:]}"
+    return f"{name_card} - {private_number[:4]} {private_number[4:8]} {private_number[8:12]} {private_number[12:]}"
 
 
 def hiding_account(account):
@@ -60,8 +61,10 @@ def hiding_account(account):
     """
     split_str_account = account.split(" ")
     account_number = "".join(split_str_account[-1])
+    name_account = " ".join(split_str_account[:-1])
     last_six_digits = account_number[-6:]
     hiding = len(last_six_digits[:2]) * "*" + last_six_digits[2:]
-    return hiding
+    return f"{name_account} - {hiding}"
 
-print(hiding_account("Счет 96527012349577388612"))
+print(hiding_card("Visa 3654412434951162"))
+print(hiding_account("Счет 59986621134048778289"))
