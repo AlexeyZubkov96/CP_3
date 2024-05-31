@@ -36,6 +36,15 @@ def last_five_operations():
     return five_operations
 
 
+def sorting_by_date():
+    """
+    Возвращает отсортированный список по дате
+    """
+    five_operations = last_five_operations()
+    sorted_date_operations = sorted(five_operations, key=lambda x: x['date'], reverse=True)
+    return sorted_date_operations
+
+
 def date_formation(date):
     """
     Возвращает дату в формате(ДД.ММ.ГГ)
@@ -66,5 +75,4 @@ def hiding_account(account):
     hiding = len(last_six_digits[:2]) * "*" + last_six_digits[2:]
     return f"{name_account} - {hiding}"
 
-print(hiding_card("Visa 3654412434951162"))
-print(hiding_account("Счет 59986621134048778289"))
+print(sorting_by_date())
