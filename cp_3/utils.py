@@ -1,6 +1,7 @@
 import json
 
 from config import PATH_OPERATIONS
+from datetime import datetime
 
 
 def reading_file_json(operations):
@@ -33,3 +34,24 @@ def last_five_operations():
     operations = completed_operations()
     five_operations = operations[-5::]
     return five_operations
+
+
+def date_formation(date):
+    """
+    Возвращает дату в формате(ДД.ММ.ГГ)
+    """
+    date_ = datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%f')
+    return f'{date_:%d.%m.%Y}'
+
+
+def hiding_card(card):
+    """
+    Возвращает номер карты в формате ХХХХ ХХ** **** XXXX
+    """
+    split_str_score = card.split(" ")
+    card_number = "".join(split_str_score[-1])
+    private_number = card_number[:6] + (len(card_number[6:-4]) * '*') + card_number[-4:]
+    return f"{private_number[:4]} {private_number[4:8]} {private_number[8:12]} {private_number[12:]}"
+
+
+print(hiding_card("Maestro 1308795367077170"))
