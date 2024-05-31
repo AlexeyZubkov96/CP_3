@@ -54,4 +54,14 @@ def hiding_card(card):
     return f"{private_number[:4]} {private_number[4:8]} {private_number[8:12]} {private_number[12:]}"
 
 
-print(hiding_card("Maestro 1308795367077170"))
+def hiding_account(account):
+    """
+    Возвращает номер счета в формате **XXXX
+    """
+    split_str_account = account.split(" ")
+    account_number = "".join(split_str_account[-1])
+    last_six_digits = account_number[-6:]
+    hiding = len(last_six_digits[:2]) * "*" + last_six_digits[2:]
+    return hiding
+
+print(hiding_account("Счет 96527012349577388612"))
