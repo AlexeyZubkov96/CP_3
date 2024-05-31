@@ -75,4 +75,44 @@ def hiding_account(account):
     hiding = len(last_six_digits[:2]) * "*" + last_six_digits[2:]
     return f"{name_account} - {hiding}"
 
-print(sorting_by_date())
+
+def correct_dictionary():
+    """
+    Возвращает список словарей с обработаными данными
+    """
+    five_operations = sorting_by_date()
+    user_print_list = []
+    for opera in five_operations:
+        user_print_dict = {}
+        rus_date = date_formation(opera["date"]) # Требуемый формат даты
+        user_print_dict["date"] = rus_date
+        operation_type = opera["description"] # Вид операции
+        user_print_dict["operation"] = operation_type
+        amount_user = opera["operationAmount"]["amount"]
+        user_print_dict["amount"] = amount_user
+        currency = opera["operationAmount"]["currency"]["name"]
+        user_print_dict["currency"] = currency
+        if opera.get("from") is None:
+            if opera["to"].count("Счет") == 1:
+                user_print_dict["score to"] = hiding_account(opera["to"])
+            else:
+                user_print_dict["score to"] = hiding_card(opera["to"])
+                continue
+        elif opera["from"].count("Счет") == 1:
+            account = hiding_account(opera["from"])
+            user_print_dict["from"] = account
+            if opera["to"].count("Счет") == 1:
+                user_print_dict["score to"] = hiding_account(opera["to"])
+            else:
+                user_print_dict["score to"] = hiding_card(opera["to"])
+        else:
+            card = hiding_card(opera["from"])
+            user_print_dict["from"] = card
+            if opera["to"].count("Счет") == 1:
+                user_print_dict["score to"] = hiding_account(opera["to"])
+            else:
+                user_print_dict["score to"] = hiding_card(opera["to"])
+        user_print_list.append(user_print_dict)
+    return user_print_list
+
+
