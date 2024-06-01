@@ -7,3 +7,6 @@ PATH_CP_3 = ROOT_PATH.joinpath("cp_3")
 # Путь до файлу "operations.json"
 PATH_OPERATIONS = PATH_CP_3.joinpath("operations.json")
 
+# Количество нужных операций
+count_operations = 5
+
