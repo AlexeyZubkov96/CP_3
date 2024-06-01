@@ -1,6 +1,5 @@
 import json
 
-from config import PATH_OPERATIONS
 from datetime import datetime
 
 
@@ -13,11 +12,10 @@ def reading_file_json(operations):
         return file_json
 
 
-def completed_operations():
+def completed_operations(operations_list):
     """
     Возвращает список всех выполненых операций
     """
-    operations_list = reading_file_json(PATH_OPERATIONS)
     list_completed_operations = []
     for opera in operations_list:
         if opera.get("state") is None:
@@ -27,20 +25,18 @@ def completed_operations():
     return list_completed_operations
 
 
-def last_five_operations():
+def last_five_operations(operations, count_operations):
     """
-    Возвращает список словарей пяти последних выполненых операций
+    Возвращает список словарей последних выполненых операций взависимости от требуемого количества
     """
-    operations = completed_operations()
-    five_operations = operations[-5::]
+    five_operations = operations[-count_operations::]
     return five_operations
 
 
-def sorting_by_date():
+def sorting_by_date(five_operations):
     """
     Возвращает отсортированный список по дате
     """
-    five_operations = last_five_operations()
     sorted_date_operations = sorted(five_operations, key=lambda x: x['date'], reverse=True)
     return sorted_date_operations
 
@@ -76,11 +72,10 @@ def hiding_account(account):
     return f"{name_account} - {hiding}"
 
 
-def correct_dictionary():
+def correct_dictionary(five_operations):
     """
     Возвращает список словарей с обработаными данными
     """
-    five_operations = sorting_by_date()
     user_print_list = []
     for opera in five_operations:
         user_print_dict = {}
