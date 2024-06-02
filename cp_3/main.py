@@ -1,5 +1,5 @@
-from utils import reading_file_json, correct_dictionary, completed_operations, last_five_operations, sorting_by_date, date_formation
-from config import PATH_OPERATIONS, count_operations
+from cp_3.utils import reading_file_json, correct_dictionary, completed_operations, last_five_operations, sorting_by_date, date_formation
+from cp_3.config import PATH_OPERATIONS, count_operations
 
 
 def main():
@@ -7,9 +7,7 @@ def main():
     execute_operations = completed_operations(file_json_convert)
     five_execute_operations = last_five_operations(execute_operations, count_operations)
     sorted_date = sorting_by_date(five_execute_operations)
-    print(sorted_date)
     correct_print = correct_dictionary(sorted_date)
-    print(correct_print)
     for cor in correct_print:
         date_ = cor["date"]
         operation = cor["operation"]
