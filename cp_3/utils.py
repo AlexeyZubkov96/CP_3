@@ -93,10 +93,10 @@ def correct_dictionary(five_operations):
             else:
                 user_print_dict["score to"] = hiding_card(opera["to"])
                 continue
-        elif opera["from"].count("Счет") == 1:
+        elif opera["from"].count("Счет") >= 1:
             account = hiding_account(opera["from"])
             user_print_dict["from"] = account
-            if opera["to"].count("Счет") == 1:
+            if opera["to"].count("Счет") >= 1:
                 user_print_dict["score to"] = hiding_account(opera["to"])
             else:
                 user_print_dict["score to"] = hiding_card(opera["to"])
