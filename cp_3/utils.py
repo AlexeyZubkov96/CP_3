@@ -79,16 +79,16 @@ def correct_dictionary(five_operations):
     user_print_list = []
     for opera in five_operations:
         user_print_dict = {}
-        rus_date = date_formation(opera["date"]) # Требуемый формат даты
+        rus_date = date_formation(opera["date"])
         user_print_dict["date"] = rus_date
-        operation_type = opera["description"] # Вид операции
+        operation_type = opera["description"]
         user_print_dict["operation"] = operation_type
         amount_user = opera["operationAmount"]["amount"]
         user_print_dict["amount"] = amount_user
         currency = opera["operationAmount"]["currency"]["name"]
         user_print_dict["currency"] = currency
         if opera.get("from") is None:
-            if opera["to"].count("Счет") == 1:
+            if opera["to"].count("Счет") >= 1:
                 user_print_dict["score to"] = hiding_account(opera["to"])
             else:
                 user_print_dict["score to"] = hiding_card(opera["to"])
@@ -103,7 +103,7 @@ def correct_dictionary(five_operations):
         else:
             card = hiding_card(opera["from"])
             user_print_dict["from"] = card
-            if opera["to"].count("Счет") == 1:
+            if opera["to"].count("Счет") >= 1:
                 user_print_dict["score to"] = hiding_account(opera["to"])
             else:
                 user_print_dict["score to"] = hiding_card(opera["to"])
