@@ -8,6 +8,7 @@ def main():
     five_execute_operations = last_five_operations(execute_operations, count_operations)
     sorted_date = sorting_by_date(five_execute_operations)
     correct_print = correct_dictionary(sorted_date)
+    result = ""
     for cor in correct_print:
         date_ = cor["date"]
         operation = cor["operation"]
@@ -15,14 +16,11 @@ def main():
         currency = cor["currency"]
         score_to = cor["score to"]
         if cor.get("from") is None:
-            print(f"{date_} {operation}"
-                  f"->{score_to}\n"
-                  f"{amount}{currency}\n")
+            result += f"{date_} {operation}->{score_to}\n{amount}{currency}\n\n"
         else:
-            print(f"{date_} {operation}\n"
-                  f"{cor['from']}->{score_to}\n"
-                  f"{amount}{currency}\n")
+            result += f"{date_} {operation}\n{cor['from']}->{score_to}\n{amount}{currency}\n\n"
+    return result
 
 
 if __name__ == "__main__":
-    main()
+    print(main())
