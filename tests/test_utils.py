@@ -27,11 +27,8 @@ def test_last_five_operations():
         {},
         {"state": "test"},
         {"state": "EXECUTED", "date": "12.03.2019"},]
-    operations_last = [
-        {"state": "test"},
-        {"state": "EXECUTED", "date": "12.03.2019"},
-    ]
-    assert last_five_operations(operations_all, 2) == operations_last
+    operations_last = [{"state": "EXECUTED", "date": "11.02.2023"}]
+    assert last_five_operations(operations_all, 1) == operations_last
 
 
 def test_sorting_by_date():

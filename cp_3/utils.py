@@ -18,9 +18,7 @@ def completed_operations(operations_list):
     """
     list_completed_operations = []
     for opera in operations_list:
-        if opera.get("state") is None:
-            continue
-        elif opera["state"] == "EXECUTED":
+        if opera.get("state") == "EXECUTED":
             list_completed_operations.append(opera)
     return list_completed_operations
 
@@ -29,7 +27,7 @@ def last_five_operations(operations, count_operations):
     """
     Возвращает список словарей последних выполненых операций взависимости от требуемого количества
     """
-    five_operations = operations[-count_operations::]
+    five_operations = operations[:count_operations]
     return five_operations
 
 
